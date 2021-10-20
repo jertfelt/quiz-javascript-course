@@ -1,0 +1,17 @@
+body {
+  background-color: thistle;
+  text-align: center;
+  flex: auto;
+}
+
+.original{
+color: black;
+}
+
+.newfontcolor {
+  color:  whitesmoke;
+}
+
+.navigation-top {
+text-align: right;
+}
