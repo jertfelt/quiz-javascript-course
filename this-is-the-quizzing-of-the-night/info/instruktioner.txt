@@ -1,0 +1,29 @@
+Ankademin Quiz - JavaScript
+
+Beskrivning: Du har fått i uppgift att skapa ett quiz med 10 frågor. Användare ska kunna svara på frågor och få feedback på huruvida hen besvarat dessa rätt eller fel.
+
+Du bestämmer själv om du vill lägga dig på G eller VG-nivå för denna uppgift. Jag rekommenderar att läsa igenom instruktioner och tar beslutet innan du sätter igång, så att du kan planera och börja skapa logiken rätt från början.
+
+Kravsättning
+
+Quizet ska innehålla 10 frågor.
+Användaren ska utöver att besvara frågor för quizet, även kunna byta utseende på sidan till dark mode (dvs mörk bakgrundsfärg med ljus text ) och light mode (ljus bakgrundsfärg med mörk text).
+
+G
+Varje fråga ska bestå av ett påstående. Under påståendet det finnas två svarsalternativ: Sant och falskt.
+När man klickar på ett felaktigt svarsalternativ ska det skrivas ut “Fel svar” vid frågan med röd text. 
+Klickar man på rätt svarsalternativ, ska det skrivas ut “Rätt svar!” vid frågan med grön text.
+Användaren ska kunna göra om quizet genom att ladda om sidan med hjälp av ett knapptryck (OBS! Skapa t.ex en knapp som du kan åstadkomma detta med, användaren ska ej behöva uppdatera med funktionalitet som är inbyggd i webbläsaren).
+VG
+
+KRAV:
+
+Om svaret var korrekt eller inte ska INTE skrivas ut direkt när det klickas på.
+Under varje fråga ska det finnas minst tre svarsalternativ.
+Frågorna ska besvaras med <input type=”radio”> för svarsalternativen.
+Minst en fråga kan besvaras med flera svar. Svarsalternativen (som ska vara minst tre stycken) ska vara av typen <input type=”checkbox”>. För att få rätt på denna fråga, behöver samtliga rätta svar vara ifyllda, varken fler eller mindre.
+Längst ned i quizet ska det finnas en knapp med texten “Check answers”. När den klickas på, ska det visas hur många rätt användaren hade (ska skrivas ut i DOM:en). Om användaren har över hälften rätt, ska meddelandet stå i orange färg. Om användaren har över 75% rätt, ska meddelandet stå i grön färg.
+EXTRA: Skapa en “Retry”-knapp som användaren kan klicka äpå för att spela igen.
+
+
+OBS: MINST 3 GITHUBS
