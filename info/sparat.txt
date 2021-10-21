@@ -1,28 +1,97 @@
-<script type="text/javascript">
-    function refreshPage() {
-        if (confirm("Are you sure, want to refresh?")) {
-            location.reload();
-        }
-    }
-</script>
 
-HTML Source Code with JavaScript:
+Rapunzel
+https://lumiere-a.akamaihd.net/v1/images/q_omd_q2-image2_ddt-17141_e496fab5.jpeg?width=666
 
-<!--JavaScript - Function to Refresh Page on Button Click.-->
-<html>
-    <head>
-        <title>JavaScript - Function to Refresh Page on Button Click.</title>
-        <script type="text/javascript">
-            function refreshPage() {
-                if (confirm("Are you sure, want to refresh?")) {
-                    location.reload();
-                }
-            }
-        </script>
-    </head>
+Cinderella
+https://lumiere-a.akamaihd.net/v1/images/q_omd_q3-image3-_ddt-17141_5721d157.jpeg?width=666
 
-    <body style="text-align: center;">
-        <h1>JavaScript - Function to Refresh Page on Button Click.</h1>
-        <p><input type="button" value="Refresh Webpage." onclick="refreshPage()" /></p>
-    </body>
-</html>
+Mushu
+https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe_Md3tLur4-fVsTmoNDpgsXRWCFDi50Qkrg&usqp=CAU 
+
+Jasmine
+https://lumiere-a.akamaihd.net/v1/images/q_omd_q4-image4_ddt-17141_ab25e911.jpeg?width=666
+
+Bruce: 
+https://static.wikia.nocookie.net/disney/images/d/d3/Profile_-_Bruce.jpg/revision/latest/scale-to-width-down/516?cb=20190319020831
+
+Jafar:
+https://static.wikia.nocookie.net/disney/images/6/60/Profile_-_Jafar.jpeg/revision/latest/scale-to-width-down/516?cb=20190312023726 
+
+Hades: 
+https://static.wikia.nocookie.net/disney/images/6/60/Profile_-_Jafar.jpeg/revision/latest/scale-to-width-down/516?cb=20190312023726
+
+Shere Khan:
+https://static.wikia.nocookie.net/disney/images/9/93/Profile_-_Shere_Khan.jpeg/revision/latest/scale-to-width-down/515?cb=20190312124650 
+
+Hercules:
+https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTboS_QPZGtjWuuWIWHYlKZCavEwICeXTGGEw&usqp=CAU
+
+Aladdin: 
+https://lumiere-a.akamaihd.net/v1/images/eu_movies_aladdin_article_hero_m_bdceaf9d.jpeg?region=0,0,750,663 
+
+80s: 
+https://thevinylfactory.com/wp-content/uploads/2021/08/rabbit.jpg 
+
+
+
+
+GAMMALT:
+
+//*! Försöker nu att loppa ut arrayen till buttons:
+
+
+quizQuestions.forEach((currentQuestion, questionNumber) => {
+questionNumber ++;
+  let radioButt = document.createElement("input");
+radioButt.type ="radio";
+radioButt.id = questionNumber;
+radioButt.value = currentQuestion;
+
+let label = document.createElement("label");
+label.htmlFor = questionNumber;
+let radbryt = document.createElement("br");
+quizContainer.appendChild(radioButt);
+quizContainer.appendChild(radbryt)
+quizContainer.append(label);
+})
+
+
+// // //*TODO Check answers-button and function
+
+// //**TODO: gör klart, gör om: */
+// let userAnswers =document.querySelectorAll(".answers"); 
+
+// let numCorrect = 0;
+
+// quizQuestions.forEach((currentQuest, questNumb) => {
+// let answerCont = userAnswers[questNumb];
+// let selecting = `input[name=question${questNumb}]:checked`;
+// let userInput = (useranswers.querySelector(selecting)|| {}).value; 
+// })
+
+// // let checkAnswers = document.getElementById("checking");
+// // let answersSoFar = document.getElementById("Answers");
+
+// // //*TODO: gör klart funktionen
+// // // let answersReveal ()=> {};
+
+// // //* when user clicks the button, function runs
+// // checkAnswers.addEventListener("click", answersReveal);
+
+
+
+
+//if you choose to use querySelectorAll then you must either target a specific element or loop through the available elements that you want to target with class ".p-TabBar-tabCloseIcon"
+
+//if you are only targeting one element then use document.querySelector instead
+
+//here we will use querySelectorAll like in your example
+var closeIconNodeList = document.querySelectorAll(".p-TabBar-tabCloseIcon");
+
+//below I have created a loop to check the amount of elements in the array that is output using querySelectorAll
+
+//the hideMe function will hide all elements in the array that use class "p-Tabbar-tabCloseIcon" 
+const hideMe = function() {
+for (var x = 0; x < closeIconNodeList.length; x++)
+    closeIconNodeList[x].style.display = 'none';
+ };
