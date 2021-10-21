@@ -15,3 +15,14 @@ color: black;
 .navigation-top {
 text-align: right;
 }
+
+.question {
+  font-weight: 900;
+}
+.answers {
+  margin-bottom: 5%;
+}
+
+.images {
+  width: 50%;
+}
