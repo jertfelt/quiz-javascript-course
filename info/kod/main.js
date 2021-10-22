@@ -26,7 +26,7 @@ retryButton.addEventListener("click", () => {
 
 //* Quiz structure and questions:
 
-let quizContainer = document.getElementById("quizHome");
+let quiz = document.getElementById("quizHome");
 
 const quizQuestions = [
   {
@@ -103,8 +103,8 @@ const quizQuestions = [
 },
 ]
 
-//*put the multiple choices in a separate array for the looping purposes
-const quizQuestionsMultiple = {
+//*put the multiple choices in a separate array for the purpose of creating divs, hence practising two ways of creating buttons and such:
+const quizQuestionsMultiple = [ {
 // (plot twist: alla är rätt)
 question: "Which ones of these great movies were released in the 80s?",
 answers: {
@@ -121,6 +121,8 @@ correct: {
   d: "Oliver & Company",
   e: "The Little Mermaid",
 },
+},
+{
 question : "Which ones of these are Disney villains?",
 answers: {
   a: "Jafar",
@@ -131,33 +133,92 @@ correct: {
   a: "Jafar",
  c: "Hades",
 },
-}
+},]
 
-//* creating an empty array for future divs with separate DIVs per question:
+//* creating an empty array for future divs with separate DIVs per question: (you'll see further down)
 let quizBodyArr = [];
 
    //* creating HTML-radiobuttons for each available answer through looping through the object-array
+
 quizQuestions.forEach((currentQuest, questNumb) => {
   let answerArray = [];
   for (choice in currentQuest.answers){
-    //* this took me some time to figure out:
-    answerArray.push(`<input type="radio" name="question${questNumb}" value="${choice}">
-    ${choice} :
-    ${currentQuest.answers[choice]}
-  `
-    ) 
-  }
-  //*Pushing the answerArray into an answers div, along with divs for questions and images. 
-  
-//*! märk noga här: parent till div class question är quizHome: då med ordningen images, question, answers
+    //* creating HTML and pushing
+    answerArray.push(`<input type="radio" class= "test" id ="question${questNumb}" name="question${questNumb}" value="${choice}">
+    ${currentQuest.answers[choice]}<br>
+  `  )} 
+
+  //*Pushing the answerArray into an answers div, along with divs for questions and images, and then appending it by adding it into quizContainers innerHTML.
+   //* Disclaimer: searching the web for possible solutions of creating this, I stumbled upon join(): (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Globalt_Objects/Array/join) a neat way to push in the array elements as string objects, and it seems to work although I do not 100% comprehend it.
+
+   
   quizBodyArr.push(
     `<div class="images"></div>
     <div class="question"> ${currentQuest.question} </div>
-    <div class="answers"> ${answerArray.join('')} </div>`
-    //* just discovered the basic wonders of join (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join) a neat way to push in the array elements as string objects.  
+    <div class="answers1"> ${answerArray.join('')} </div><br>`
   );
 });
-quizContainer.innerHTML = quizBodyArr.join('');
+quiz.innerHTML = quizBodyArr.join('');
 
-//*TODO how to add pictures in every question using children nodes and adding html. Looping through every "images"-class, assigning them numbers, and then go into each element and give
+//*TODO how to add pictures in every question using children nodes and adding html. Looping through every "images"-class, assigning them numbers, and then go into each element and give //*! märk noga här: parent till div class question är quizHome: då med ordningen images, question, answers
+
+//*! Instead of creating an addEventListener to every button (it seems impossible, believe me, I. HAVE. TRIED.) I will instead have a button that submits answers - incidentally the same one as "Check answers" that will loop over user answers, check them, and then show the result.
+
+let checkAnswersButt = document.getElementById("check");
+let resultDiv = document.getElementById("result");
+
+
+//*created arrays with possible answers for the multiplechoices:
+let userAnswerMultiple = document.querySelectorAll(".answers2");
+console.log(userAnswerMultiple);
+let userAnswerMultiple2 = document.querySelectorAll(".answers3");
+console.log(userAnswerMultiple2);
+
+//? how to access the correct?
+let correctMultipleboth = document.querySelectorAll("quizQuestionsMultiple.question.correct");
+console.log(correctMultipleboth)
+
+//*Adding eventlistener
+checkAnswersButt.addEventListener("click", ()=> {
+  let resultbox = document.createElement("div");
+  let resulttext = document.createElement("h3");
+  resultDiv.appendChild(resultbox);
+  resultbox.appendChild(resulttext);
+  let numCorrect = 0;
+  let gettingAnswersFromQuiz = document.querySelectorAll(".answers1"); 
+  
+  quizQuestions.forEach((currentQ, qNumb) => {
+    
+    let gettingAnswers = gettingAnswersFromQuiz[qNumb];
+    let userInput = `input[name=question${qNumb}]:checked`;
+    let userAnswer = (gettingAnswers.querySelector(userInput)).value;
+
+    //*TODO:  hur man kollar så att allt är ifyllt (annars blir det "is null", nedan fungerar inte)
+    if (userAnswer.value === "" )
+    {
+      alert("You have to fill out all the questions!")
+    }
+    if (userAnswer === currentQ.correct){
+      numCorrect++;
+    }
+
+})
+
+
+
+let numBonusCorrect= 0;
+//*! nedan if-sats fungerar alltså inte, den ger rätt oavsett vad man klickar i:
+if (`input[name="checkbox1", value ="a"]` && `input[name="checkbox1",value ="c"]`){
+  numBonusCorrect++;
+console.log("Correct from bonus")};
+//*TODO: change this text last:
+resulttext.innerHTML="You got " + numCorrect + " correct answers, and " + numBonusCorrect + " of the bonus questions right!";
+
+
+    
+  // }
+  // if (`input[name="checkbox2", value ="a"]` && `input[name="checkbox2", value ="b"]` && `input[name="checkbox2", value ="b"]` && `input[name="checkbox2", value ="d"]`&& `input[name="checkbox2", value ="e"]`) {
+  //   numCorrect++
+    
+  })
 

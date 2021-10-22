@@ -18,11 +18,32 @@ text-align: right;
 
 .question {
   font-weight: 900;
+  font-size:20px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+ 
 }
-.answers {
-  margin-bottom: 5%;
+.answers1 {
+  margin-top: 0.5%;
+  font-size:16px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .images {
   width: 50%;
+}
+
+#check {
+  padding:20px;
+   background-color: #04AA6D;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  font-size:16px;
+  margin: 4px 2px;
+  border-radius: 12px;
+  font-weight: 900;
+}
+
+.h2 {
+  font-family: Arial, Helvetica, sans-serif;
 }

@@ -34,26 +34,13 @@ https://thevinylfactory.com/wp-content/uploads/2021/08/rabbit.jpg
 
 
 
+KOM IHÅG: MOTIVERA UTLOOPANDET och .JOIN('')
+
+
 
 GAMMALT:
 
 //*! Försöker nu att loppa ut arrayen till buttons:
-
-
-quizQuestions.forEach((currentQuestion, questionNumber) => {
-questionNumber ++;
-  let radioButt = document.createElement("input");
-radioButt.type ="radio";
-radioButt.id = questionNumber;
-radioButt.value = currentQuestion;
-
-let label = document.createElement("label");
-label.htmlFor = questionNumber;
-let radbryt = document.createElement("br");
-quizContainer.appendChild(radioButt);
-quizContainer.appendChild(radbryt)
-quizContainer.append(label);
-})
 
 
 // // //*TODO Check answers-button and function
@@ -95,3 +82,14 @@ const hideMe = function() {
 for (var x = 0; x < closeIconNodeList.length; x++)
     closeIconNodeList[x].style.display = 'none';
  };
+
+let answerbutt = document.querySelectorAll(".answers1");
+answerbutt.addEventListener("click", function)
+
+ //!ÅH HERREG
+buttonsQuizpart1.forEach((currentQuest, butt) => {
+  butt.addEventListener("click", () => {
+   userinputAnswers++;
+   if (butt == )
+   userAnswers.push(currentQuest.answers)
+  })})
