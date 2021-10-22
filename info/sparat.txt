@@ -93,3 +93,32 @@ buttonsQuizpart1.forEach((currentQuest, butt) => {
    if (butt == )
    userAnswers.push(currentQuest.answers)
   })})
+
+
+
+
+  
+let wrongAnswer = document.getElementById("#checkboxBruce")
+if ("wrongAnswer:checked" !== null){
+  console.log("wrong lever kronk!")
+}
+
+let userChoice2 = (gettingAnswers.querySelector(userInput)).value;
+
+
+selectingMultipleAnswers.forEach((currentQuestion) => {
+
+
+
+if (`input[id="checkboxJafar"]:checked` && `input[id="checkboxHades"]:checked`){
+  numBonusCorrect++;
+console.log("Correct from bonus")};
+
+/ }
+  // if (`input[name="checkbox2", value ="a"]` && `input[name="checkbox2", value ="b"]` && `input[name="checkbox2", value ="b"]` && `input[name="checkbox2", value ="d"]`&& `input[name="checkbox2", value ="e"]`) {
+  //   numCorrect++
+    
+
+
+      let correctAnswer1 = `input[id="checkboxJafar"]:checked`; 
+    let correctAnswer2 = `input[id="checkboxHades"]:checked`;

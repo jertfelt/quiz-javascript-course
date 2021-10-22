@@ -131,7 +131,7 @@ answers: {
 },
 correct: {
   a: "Jafar",
- c: "Hades",
+  c: "Hades",
 },
 },]
 
@@ -162,21 +162,12 @@ quiz.innerHTML = quizBodyArr.join('');
 
 //*TODO how to add pictures in every question using children nodes and adding html. Looping through every "images"-class, assigning them numbers, and then go into each element and give //*! märk noga här: parent till div class question är quizHome: då med ordningen images, question, answers
 
-//*! Instead of creating an addEventListener to every button (it seems impossible, believe me, I. HAVE. TRIED.) I will instead have a button that submits answers - incidentally the same one as "Check answers" that will loop over user answers, check them, and then show the result.
+//*? Instead of creating an addEventListener to every button (it seems impossible, believe me, I. HAVE. TRIED.) I will instead have a button that submits answers - incidentally the same one as "Check answers" that will loop over user answers, check them, and then show the result. And then I will add inside that eventlistener a loop for the multiple replies
 
 let checkAnswersButt = document.getElementById("check");
-let resultDiv = document.getElementById("result");
-
-
-//*created arrays with possible answers for the multiplechoices:
-let userAnswerMultiple = document.querySelectorAll(".answers2");
-console.log(userAnswerMultiple);
-let userAnswerMultiple2 = document.querySelectorAll(".answers3");
-console.log(userAnswerMultiple2);
-
-//? how to access the correct?
-let correctMultipleboth = document.querySelectorAll("quizQuestionsMultiple.question.correct");
-console.log(correctMultipleboth)
+let resultDiv = document.getElementById("result")
+let numCorrect = 0;
+let bonusCorrect= 0;
 
 //*Adding eventlistener
 checkAnswersButt.addEventListener("click", ()=> {
@@ -184,41 +175,66 @@ checkAnswersButt.addEventListener("click", ()=> {
   let resulttext = document.createElement("h3");
   resultDiv.appendChild(resultbox);
   resultbox.appendChild(resulttext);
-  let numCorrect = 0;
+  
   let gettingAnswersFromQuiz = document.querySelectorAll(".answers1"); 
   
+  //*TODO: måste fixa detta:
+  alert("Wrong lever Kronk! You need to answer all questions!") //*! får inte in denna ifsats någonstans! inuti foreach fungerar men då upprepas den för varje input typ. utanför: kan inte accessa  (gettingAnswers.querySelector(userInput)).value
+ 
+  //*this is looping through the "ordinary questions"
   quizQuestions.forEach((currentQ, qNumb) => {
-    
     let gettingAnswers = gettingAnswersFromQuiz[qNumb];
-    let userInput = `input[name=question${qNumb}]:checked`;
-    let userAnswer = (gettingAnswers.querySelector(userInput)).value;
-
-    //*TODO:  hur man kollar så att allt är ifyllt (annars blir det "is null", nedan fungerar inte)
-    if (userAnswer.value === "" )
-    {
-      alert("You have to fill out all the questions!")
-    }
-    if (userAnswer === currentQ.correct){
+    let userInput = `input[name=question${qNumb}]:checked`; //*cannot use .checked because it's a string
+    let userChoice = (gettingAnswers.querySelector(userInput)).value; 
+    if (userChoice === currentQ.correct){
       numCorrect++;
+      console.log(numCorrect.value + " är rätt")
     }
+    else {
+      console.log("Wrong on this question ")
+    }
+    console.log("Total correct answers:" + numCorrect);  
+});
+
+//*this is looping through multiple answer choice:
+//*! 
+
+//! this needs to have a :checked
+
+//*TODO: kolla denna (FUNGERADE EJ)
+let userchecksBonus = document.getElementsByName("Movies");
+let selected = [];
+for (let i =0; i< userchecksBonus.length; i++){
+  if (userchecksBonus[i].checked){
+    selected.push(userchecksBonus[i].value); 
+    if (selected.length === (userchecksBonus-1)){
+      bonusCorrect++;
+      console.log("TEST")
+    }
+  }
+} 
+
+//*array with checked 
+let userchecksBonusVillains = document.querySelectorAll(`[name="Villains"]:checked`); 
+
+quizQuestionsMultiple.forEach((item) => {
+  let correctanswers = item.correct;
+  console.log(correctanswers);
+
+  userchecksBonusVillains.forEach((item) => {
+   let userAnswer = `input[name="Villains"]:checked`;
+   let correctAnswer1 = `input[id="checkboxJafar"]:checked` 
+   let correctAnswer2 = `input[id="checkboxHades"]:checked`; 
+   if (userAnswer === correctAnswer1 && correctAnswer2) {
+     console.log("YASSSS QUEEN");
+     bonusCorrect++;
+   }
+ })
 
 })
 
+//*TODO: change this text last:  
+resulttext.innerHTML="You got " + (numCorrect + BonusCorrect) + " correct answers";
 
-
-let numBonusCorrect= 0;
-//*! nedan if-sats fungerar alltså inte, den ger rätt oavsett vad man klickar i:
-if (`input[name="checkbox1", value ="a"]` && `input[name="checkbox1",value ="c"]`){
-  numBonusCorrect++;
-console.log("Correct from bonus")};
-//*TODO: change this text last:
-resulttext.innerHTML="You got " + numCorrect + " correct answers, and " + numBonusCorrect + " of the bonus questions right!";
-
-
+}) //*end of addevent
     
-  // }
-  // if (`input[name="checkbox2", value ="a"]` && `input[name="checkbox2", value ="b"]` && `input[name="checkbox2", value ="b"]` && `input[name="checkbox2", value ="d"]`&& `input[name="checkbox2", value ="e"]`) {
-  //   numCorrect++
-    
-  })
-
