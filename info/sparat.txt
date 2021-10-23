@@ -1,4 +1,12 @@
 
+
+
+  //* 
+
+//*TODO how to add pictures in every question using children nodes and adding html. Looping through every "images"-class, assigning them numbers, and then go into each element and give //
+*! märk noga här: parent till div class question är quizHome: då med ordningen images, question, answers
+
+
 Rapunzel
 https://lumiere-a.akamaihd.net/v1/images/q_omd_q2-image2_ddt-17141_e496fab5.jpeg?width=666
 
@@ -34,36 +42,7 @@ https://thevinylfactory.com/wp-content/uploads/2021/08/rabbit.jpg
 
 
 
-KOM IHÅG: MOTIVERA UTLOOPANDET och .JOIN('')
 
-
-
-GAMMALT:
-
-//*! Försöker nu att loppa ut arrayen till buttons:
-
-
-// // //*TODO Check answers-button and function
-
-// //**TODO: gör klart, gör om: */
-// let userAnswers =document.querySelectorAll(".answers"); 
-
-// let numCorrect = 0;
-
-// quizQuestions.forEach((currentQuest, questNumb) => {
-// let answerCont = userAnswers[questNumb];
-// let selecting = `input[name=question${questNumb}]:checked`;
-// let userInput = (useranswers.querySelector(selecting)|| {}).value; 
-// })
-
-// // let checkAnswers = document.getElementById("checking");
-// // let answersSoFar = document.getElementById("Answers");
-
-// // //*TODO: gör klart funktionen
-// // // let answersReveal ()=> {};
-
-// // //* when user clicks the button, function runs
-// // checkAnswers.addEventListener("click", answersReveal);
 
 
 
@@ -82,18 +61,6 @@ const hideMe = function() {
 for (var x = 0; x < closeIconNodeList.length; x++)
     closeIconNodeList[x].style.display = 'none';
  };
-
-let answerbutt = document.querySelectorAll(".answers1");
-answerbutt.addEventListener("click", function)
-
- //!ÅH HERREG
-buttonsQuizpart1.forEach((currentQuest, butt) => {
-  butt.addEventListener("click", () => {
-   userinputAnswers++;
-   if (butt == )
-   userAnswers.push(currentQuest.answers)
-  })})
-
 
 
 
@@ -122,3 +89,54 @@ console.log("Correct from bonus")};
 
       let correctAnswer1 = `input[id="checkboxJafar"]:checked`; 
     let correctAnswer2 = `input[id="checkboxHades"]:checked`;
+
+
+    
+//*this is looping through multiple answer choice:
+//*TODO: kolla denna (FUNGERADE EJ)
+let userchecksBonus = document.getElementsByName("Movies");
+let selected = [];
+for (let i =0; i< userchecksBonus.length; i++){
+  if (userchecksBonus[i].checked){
+    selected.push(userchecksBonus[i].value); 
+    if (selected.length === (userchecksBonus-1)){
+      bonusCorrect++;
+      console.log("TEST")
+    }
+  }
+} 
+
+//*array with checked 
+let userchecksBonusVillains = document.querySelectorAll(`[name="Villains"]:checked`); 
+
+quizQuestionsMultiple.forEach((item) => {
+  let correctanswers = item.correct;
+  console.log(correctanswers);
+
+  userchecksBonusVillains.forEach((item) => {
+   let userAnswer = `input[name="Villains"]:checked`;
+   let correctAnswer1 = `input[id="checkboxJafar"]:checked` 
+   let correctAnswer2 = `input[id="checkboxHades"]:checked`; 
+   if (userAnswer === correctAnswer1 && correctAnswer2) {
+     console.log("YASSSS QUEEN");
+     bonusCorrect++;
+   }
+ })
+
+})
+
+
+
+
+
+
+TRYING TO MAKE  it possible 
+  let selectedButts = document.querySelectorAll(".outLooped");
+var somethingKronky = 0;
+  selectedButts.forEach((item) => {
+    if (item.checked !== true){
+      somethingKronky++; 
+  }})
+  if (somethingKronky >= 0){
+    alert("Wrong lever Kronk! You need to answer ALL questions!")
+  }else {
