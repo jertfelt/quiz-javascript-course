@@ -135,106 +135,78 @@ correct: {
 },
 },]
 
-//* creating an empty array for future divs with separate DIVs per question: (you'll see further down)
+//* creating an empty array for future divs with separate DIVs per question: 
 let quizBodyArr = [];
 
-   //* creating HTML-radiobuttons for each available answer through looping through the object-array
+//* creating HTML-radiobuttons for each available answer through looping through the object-array
 
 quizQuestions.forEach((currentQuest, questNumb) => {
-  let answerArray = [];
+  let visibleArray = [];
   for (choice in currentQuest.answers){
     //* creating HTML and pushing
-    answerArray.push(`<input type="radio" class= "test" id ="question${questNumb}" name="question${questNumb}" value="${choice}">
+    visibleArray.push(`<input type="radio" class= "outLooped" id ="question${questNumb}" name="question${questNumb}" value="${choice}">
     ${currentQuest.answers[choice]}<br>
   `  )} 
 
-  //*Pushing the answerArray into an answers div, along with divs for questions and images, and then appending it by adding it into quizContainers innerHTML.
-   //* Disclaimer: searching the web for possible solutions of creating this, I stumbled upon join(): (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Globalt_Objects/Array/join) a neat way to push in the array elements as string objects, and it seems to work although I do not 100% comprehend it.
+  //*Pushing the array into an answers div, along with divs for questions and images, and then appending it by adding it into quizQuestions innerHTML. 
 
-   
   quizBodyArr.push(
-    `<div class="images"></div>
-    <div class="question"> ${currentQuest.question} </div>
-    <div class="answers1"> ${answerArray.join('')} </div><br>`
+    `<div class="question"> ${currentQuest.question} </div> 
+    <div class="answers1"> ${visibleArray.join('')} </div><br>`
   );
 });
 quiz.innerHTML = quizBodyArr.join('');
+//*(see comments.txt) about join
 
-//*TODO how to add pictures in every question using children nodes and adding html. Looping through every "images"-class, assigning them numbers, and then go into each element and give //*! märk noga här: parent till div class question är quizHome: då med ordningen images, question, answers
-
-//*? Instead of creating an addEventListener to every button (it seems impossible, believe me, I. HAVE. TRIED.) I will instead have a button that submits answers - incidentally the same one as "Check answers" that will loop over user answers, check them, and then show the result. And then I will add inside that eventlistener a loop for the multiple replies
+//*? Instead of creating an addEventListener to every button (it seems impossible, believe me, I. HAVE. TRIED.) I will instead have a button that submits answers - incidentally the same one as "Check answers" that will loop over user answers, check them, and then show the result. 
 
 let checkAnswersButt = document.getElementById("check");
 let resultDiv = document.getElementById("result")
 let numCorrect = 0;
-let bonusCorrect= 0;
 
-//*Adding eventlistener
-checkAnswersButt.addEventListener("click", ()=> {
+function scoreResults(){
   let resultbox = document.createElement("div");
   let resulttext = document.createElement("h3");
   resultDiv.appendChild(resultbox);
   resultbox.appendChild(resulttext);
-  
-  let gettingAnswersFromQuiz = document.querySelectorAll(".answers1"); 
-  
-  //*TODO: måste fixa detta:
-  alert("Wrong lever Kronk! You need to answer all questions!") //*! får inte in denna ifsats någonstans! inuti foreach fungerar men då upprepas den för varje input typ. utanför: kan inte accessa  (gettingAnswers.querySelector(userInput)).value
- 
+
+let gettingAnswersFromQuiz = document.querySelectorAll(".answers1"); 
+
   //*this is looping through the "ordinary questions"
   quizQuestions.forEach((currentQ, qNumb) => {
     let gettingAnswers = gettingAnswersFromQuiz[qNumb];
-    let userInput = `input[name=question${qNumb}]:checked`; //*cannot use .checked because it's a string
-    let userChoice = (gettingAnswers.querySelector(userInput)).value; 
+    let userInput = `input[name=question${qNumb}]:checked`; 
+    //*  ({}) is an empty object. (see comments.txt) 
+    let userChoice = (gettingAnswers.querySelector(userInput) || {}).value; 
     if (userChoice === currentQ.correct){
       numCorrect++;
-      console.log(numCorrect.value + " är rätt")
-    }
+      console.log(numCorrect.value + "this be right")}
     else {
       console.log("Wrong on this question ")
     }
     console.log("Total correct answers:" + numCorrect);  
-});
+  })}
 
-//*this is looping through multiple answer choice:
-//*! 
+  //* now for the multiple answers nightmare: 
+  function multiple(){
+    let correctAnswersMultiple = [];
 
-//! this needs to have a :checked
+    //*TODO: det här fungerar inte HELLER. 
+  quizQuestionsMultiple.forEach((currentQ) => {
+let gettingCorrect = currentQ.correct;
+console.log(" These are the multiple answers: " + currentQ)
+  })}
 
-//*TODO: kolla denna (FUNGERADE EJ)
-let userchecksBonus = document.getElementsByName("Movies");
-let selected = [];
-for (let i =0; i< userchecksBonus.length; i++){
-  if (userchecksBonus[i].checked){
-    selected.push(userchecksBonus[i].value); 
-    if (selected.length === (userchecksBonus-1)){
-      bonusCorrect++;
-      console.log("TEST")
-    }
-  }
-} 
 
-//*array with checked 
-let userchecksBonusVillains = document.querySelectorAll(`[name="Villains"]:checked`); 
 
-quizQuestionsMultiple.forEach((item) => {
-  let correctanswers = item.correct;
-  console.log(correctanswers);
-
-  userchecksBonusVillains.forEach((item) => {
-   let userAnswer = `input[name="Villains"]:checked`;
-   let correctAnswer1 = `input[id="checkboxJafar"]:checked` 
-   let correctAnswer2 = `input[id="checkboxHades"]:checked`; 
-   if (userAnswer === correctAnswer1 && correctAnswer2) {
-     console.log("YASSSS QUEEN");
-     bonusCorrect++;
-   }
- })
-
-})
+  
+//*Adding eventlistener
+checkAnswersButt.addEventListener("click", ()=> {
+  scoreResults();
+  multiple();  
 
 //*TODO: change this text last:  
 resulttext.innerHTML="You got " + (numCorrect + BonusCorrect) + " correct answers";
 
-}) //*end of addevent
-    
+}) //*end of addevent ;
+
