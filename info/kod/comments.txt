@@ -1,7 +1,7 @@
 
 Method: 
 I chose to loop out the object instead of manually creating each button and answer, and I have done it in different ways (and failed miserably) until I found some alternative ways. However, for the multiple choices, I have done it in HTML, as I can practise both on course materials and new things.
-
+Instead of creating an addEventListener to every button (it seems impossible, believe me, I. HAVE. TRIED.) I will instead have a button that submits answers - incidentally the same one as "Check answers" that will loop over user answers, check them, and then show the result. 
 
 Sources: 
 Empty javascript object:
