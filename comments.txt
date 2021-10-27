@@ -1,0 +1,18 @@
+
+Method: 
+I chose to loop out the object instead of manually creating each button and answer, and I have done it in different ways (and failed miserably) until I found some alternative ways. However, for the multiple choices, I have done it in HTML, as I can practise both on course materials and new things.
+Instead of creating an addEventListener to every button (it seems impossible, believe me, I. HAVE. TRIED.) I will instead have a button that submits answers - incidentally the same one as "Check answers" that will loop over user answers, check them, and then show the result. 
+
+Sources: 
+Empty javascript object:
+
+https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object
+
+
+Join(): (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Globalt_Objects/Array/join) a neat way to push in the array elements as string objects, and it seems to work although I do not 100% comprehend it. 
+
+I also tried to add divs with images as I loop out the "ordinary questions", but found it hard to add them, below doesn't work: 
+  <div class="images${questNumb}"></div>
+let imageRapunzel = document.getElementsByClassName("images0");
+imageRapunzel.firstChild.innerHTML = `<img src="https://lumiere-a.akamaihd.net/v1/images/q_omd_q2-image2_ddt-17141_e496fab5.jpeg?width=666" width="200px">
+If time: I might go back to this 
